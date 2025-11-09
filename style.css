@@ -559,7 +559,7 @@ header nav {
         padding-bottom: 6rem;
     }
     .achievements-grid {
-        width: 100%; /* Use full width on smaller screens */
+        width: 100%; 
     }
 }
 
