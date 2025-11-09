@@ -147,7 +147,7 @@ header nav {
     margin-top: 1rem;
 }
 
-/* About Section & Stair Text */
+/* About Section */
 .section-header h2 {
     font-size: 3rem;
     font-weight: 900;
@@ -158,50 +158,86 @@ header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 4rem;
+    gap: 2rem;
 }
 
 .about-text {
     flex: 1;
+    max-width: 500px;
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-dark);
 }
 
-.stair-text {
-    font-size: 5rem;
+/* REVISED: 3D Stair Text Styles for the accurate block effect */
+.stair-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+    perspective: 800px;
+}
+
+.stair-text-3d {
+    font-family: 'Inter', sans-serif;
     font-weight: 900;
-    line-height: 0.8;
-    transform: rotate(10deg) skew(-10deg);
+    font-size: 4.5rem;
+    line-height: 1;
+    letter-spacing: -3px;
+    text-transform: uppercase;
+    transform-style: preserve-3d;
+    transform: rotateX(20deg) rotateY(-30deg);
 }
 
-.stair-text div {
+.stair-text-3d span {
     display: block;
-    transform: translateX(calc(var(--i) * 15px));
-    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #f0f0f0;
+    /* This creates the sharp, deep shadow for the 3D effect */
+    text-shadow:
+        1px -1px 0 #999,
+        2px -2px 0 #888,
+        3px -3px 0 #777,
+        4px -4px 0 #666,
+        5px -5px 0 #555,
+        6px -6px 0 #444,
+        7px -7px 15px rgba(0,0,0,0.4);
 }
 
-/* Numbers Section */
-.numbers-container {
+/* Creates the stair-step indentation */
+.stair-text-3d span:nth-child(2) { transform: translate3d(30px, 0, -10px); }
+.stair-text-3d span:nth-child(3) { transform: translate3d(60px, 0, -20px); }
+.stair-text-3d span:nth-child(4) { transform: translate3d(90px, 0, -30px); }
+.stair-text-3d span:nth-child(5) { transform: translate3d(120px, 0, -40px); }
+.stair-text-3d span:nth-child(6) { transform: translate3d(150px, 0, -50px); }
+
+.stair-text-3d sup {
+    font-size: 0.5em;
+    vertical-align: 0.7em;
+    margin-right: 0.2em;
+}
+
+/* Achievements Section */
+.achievements-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
     text-align: center;
 }
 
-.number-value {
-    font-size: 6rem;
+.achievement-value {
+    font-size: 4rem;
     font-weight: 900;
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    line-height: 1.1;
 }
 
-.number-label {
-    font-size: 1.2rem;
+.achievement-label {
+    font-size: 1.1rem;
     color: var(--text-dark);
+    margin-top: 0.5rem;
 }
 
 /* Skills Section */
@@ -303,6 +339,15 @@ header nav {
 }
 
 /* Responsive Design */
+@media (max-width: 992px) {
+    .about-content {
+        gap: 1rem;
+    }
+    .stair-text-3d {
+        font-size: 3.5rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hero-content h1 {
         font-size: 2.5rem;
@@ -313,18 +358,253 @@ header nav {
     .about-content {
         flex-direction: column;
     }
-    .stair-text {
+    .about-text {
+        max-width: 100%;
+        text-align: center;
+    }
+    .stair-container {
         margin-top: 3rem;
-        transform: none;
+        perspective: none;
     }
-    .stair-text div {
-        transform: none;
+    .stair-text-3d {
+        transform: none; /* Flatten on mobile */
+        text-shadow: none; /* Remove 3D shadow on mobile */
+        font-size: 3rem;
+        text-align: center;
+        /* Use a gradient for a stylish fallback on mobile */
+        background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
-    .numbers-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    .stair-text-3d span {
+        color: transparent; /* Make original text transparent for gradient to show */
+        transform: none !important; /* Remove all transforms */
+    }
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    .achievement-value {
+        font-size: 3rem;
     }
     .nav-links {
-        display: none; /* Simple hiding for mobile, can be replaced with a hamburger menu */
+        display: none;
     }
+}
+
+@media (max-width: 480px) {
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Add this to your existing CSS file */
+
+.get-shit-done {
+    grid-column: 3 / 4; /* Position in the third column */
+    grid-row: 2 / 3;    /* Position in the second row */
+    position: relative;
+    min-height: 150px; /* Ensure there's enough space */
+}
+
+.get-shit-done a {
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+
+    /* Positioning */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    /* Vertical text effect */
+    transform: rotate(90deg);
+    transform-origin: bottom right;
+    transition: color 0.3s ease;
+}
+
+.get-shit-done a:hover {
+    color: var(--gradient-end);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .get-shit-done {
+        display: none; /* Hide on smaller screens to avoid layout issues */
+    }
+}
+/* ======================================== */
+/* Achievements Section - Frame Styling     */
+/* ======================================== */
+
+/* The main container that will act as the boundary for our frame */
+.achievements-container {
+    position: relative;
+    padding-top: 8rem;    /* Extra space for the top title */
+    padding-bottom: 8rem; /* Extra space for the bottom link */
+}
+
+/* --- Top-Left Title: "MY ACHIEVEMENTS" --- */
+/* --- Top-Left Title: "MY ACHIEVEMENTS" (Revised) --- */
+.section-title-art {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 5;
+    /* Use flexbox to easily align the two text elements */
+    display: flex;
+    align-items: flex-start; /* Align both to the top */
+}
+
+.art-horizontal-title {
+    /* This now styles "ACHIEVEMENTS" */
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.art-vertical-title {
+    /* This now styles "MY" */
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--text-light);
+    /* margin-right: 1.5rem; Add space between vertical and horizontal text */
+
+    /* This combination creates the "read from inside" effect */
+    writing-mode: vertical-lr; /* Makes text flow top-to-bottom */
+    transform: rotate(180deg);      /* Flips it upside down */
+}
+
+
+/* --- The Grid Itself --- */
+/* (This is mostly the same as your original, just ensuring it's centered) */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    text-align: center;
+    width: 80%; /* Constrain the grid width to fit inside the frame */
+    margin: 0 auto; /* Center the grid horizontally */
+}
+
+.achievement-value {
+    font-size: 4rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+}
+
+.achievement-label {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin-top: 0.5rem;
+}
+
+
+/* --- Bottom-Right Link: "CODEFORCES / LEGEND_INFINITY" --- */
+.codeforces-art-container {
+    position: absolute;
+    bottom: 2rem; /* Position from the bottom of the container */
+    right: 2rem;  /* Position from the right of the container */
+    z-index: 5;
+}
+
+.codeforces-art-link {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.art-horizontal {
+    display: block;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.art-vertical {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+    text-transform: uppercase;
+    transform-origin: top right;
+    transform: rotate(90deg);
+}
+
+.codeforces-art-link:hover .art-horizontal,
+.codeforces-art-link:hover .art-vertical {
+    color: var(--gradient-end);
+}
+
+
+/* --- Responsive Adjustments for the Frame --- */
+@media (max-width: 992px) {
+    .achievements-container {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+    .achievements-grid {
+        width: 100%; /* Use full width on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    /* On small screens, hide the frame and show a simple centered title */
+    .section-title-art,
+    .codeforces-art-container {
+        display: none;
+    }
+
+    .achievements-container::before {
+        content: 'My Achievements'; /* A simple text title as a fallback */
+        display: block;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 2rem;
+    }
+    .codeforces-art-container::before {
+        content: 'Codeforces Legend Infinity'; /* A simple text title as a fallback */
+        display: block;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 2rem;
+    }
+
+    .achievements-container {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .achievement-value {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+#preloader.hidden {
+    display: none;
 }
