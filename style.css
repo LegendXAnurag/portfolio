@@ -1,0 +1,330 @@
+/* Basic Setup and Variables */
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-light: #1a1a1a;
+    --text-light: #f0f0f0;
+    --text-dark: #a0a0a0;
+    --gradient-start: #4f46e5;
+    --gradient-end: #a855f7;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Preloader Styles */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+#loading-bar-container {
+    width: 50%;
+    max-width: 400px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 4px;
+}
+
+#loading-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    border-radius: 4px;
+    transition: width 0.1s linear;
+}
+
+#loading-percentage {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.hidden {
+    display: none;
+}
+
+/* General Layout */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section {
+    padding: 6rem 0;
+}
+
+.dark-bg {
+    background-color: var(--bg-light);
+}
+
+/* Header */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-decoration: none;
+    color: var(--text-light);
+}
+
+.nav-links a {
+    color: var(--text-dark);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-light);
+}
+
+/* Hero Section */
+.full-screen-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #020024 0%, #090979 35%, #4f46e5 100%);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1.2;
+    color: #a0a0a0;
+    letter-spacing: -2px;
+}
+
+.hero-content .smart-text {
+    font-size: 5rem;
+    background: linear-gradient(90deg, #fff, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-top: 1rem;
+}
+
+/* About Section & Stair Text */
+.section-header h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 2rem;
+}
+
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+}
+
+.about-text {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.stair-text {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 0.8;
+    transform: rotate(10deg) skew(-10deg);
+}
+
+.stair-text div {
+    display: block;
+    transform: translateX(calc(var(--i) * 15px));
+    background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Numbers Section */
+.numbers-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.number-value {
+    font-size: 6rem;
+    font-weight: 900;
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.number-label {
+    font-size: 1.2rem;
+    color: var(--text-dark);
+}
+
+/* Skills Section */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.skill-badge {
+    background-color: var(--bg-light);
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.skill-badge:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+    border-color: var(--gradient-start);
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background-color: #0a0a0a;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #222;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gradient-start);
+}
+
+.project-card h3 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.project-card p {
+    color: var(--text-dark);
+}
+
+.project-card a {
+    color: var(--gradient-end);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* Contact Section */
+.contact-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 2rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-links a svg {
+    width: 40px;
+    height: 40px;
+    fill: var(--text-dark);
+    transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover svg {
+    fill: var(--text-light);
+    transform: scale(1.2);
+}
+
+/* Animation on Scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .hero-content .smart-text {
+        font-size: 3rem;
+    }
+    .about-content {
+        flex-direction: column;
+    }
+    .stair-text {
+        margin-top: 3rem;
+        transform: none;
+    }
+    .stair-text div {
+        transform: none;
+    }
+    .numbers-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .nav-links {
+        display: none; /* Simple hiding for mobile, can be replaced with a hamburger menu */
+    }
+}
